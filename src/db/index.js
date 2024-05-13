@@ -6,6 +6,10 @@ const connectDB = async () => {
     const connectionInstance = await mongoose.connect(
       `${process.env.MONGODB_URI}/${DB_NAME}`
     );
+    app.on("error", (error) => {
+      console.error(error);
+      throw error;
+    });
     console.log(
       `\nMongoDB connected \n DB_HOST: ${connectionInstance.connection.host}}`
     );
